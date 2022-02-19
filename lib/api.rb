@@ -1,5 +1,7 @@
 require 'date'
 
+# TODO: Add tests for the CLI
+
 # Api client
 class WeApi
   class NoLocationFound < StandardError; end
