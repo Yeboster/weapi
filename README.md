@@ -4,12 +4,12 @@ Yet another [MetaWeather](https://www.metaweather.com/) api console line to demo
 
 ## Usage
 
-I've used [Thor gem](http://whatisthor.com/) to pack an cli with the following commands:
+I've used [Thor gem](http://whatisthor.com/) to pack a cli with the following commands:
 ```shell
 weapi help [COMMAND]            # Describe available commands or one specific command
-weapi raining-tomorrow-at CITY  # Check if tomorrow is raining at CITY
+weapi raining-tomorrow-in CITY  # Check if tomorrow is raining at CITY
 weapi weather-on DATE CITY      # Get weather for a CITY on given DATE (2020-01-01 format)
-weapi weather-tomorrow-at CITY  # Get tomorrow's weather for a CITY
+weapi weather-tomorrow-in CITY  # Get tomorrow's weather for a CITY
 ```
 ## License
 
