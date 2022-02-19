@@ -9,7 +9,7 @@ class ApiClientTest < Test::Unit::TestCase
 
   test 'should build url' do
     # Use send since we are testing private method
-    url = @client.send(:build_url, '/location/search', ['query=london'])
+    url = @client.__send__(:build_url, '/location/search', ['query=london'])
     assert_equal '/api/location/search?query=london', url
   end
 end

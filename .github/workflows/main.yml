@@ -25,3 +25,5 @@ jobs:
         bundler-cache: true
     - name: Run tests
       run: bundle exec rake test
+    - name: Run linter check
+      run: bundle exec rake rubocop

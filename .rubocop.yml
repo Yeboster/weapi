@@ -2,6 +2,13 @@ AllCops:
   EnabledByDefault: true
   TargetRubyVersion: 3.1
 
+
+Style/ConstantVisibility:
+  Enabled: false
+
+Style/DocumentationMethod:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
@@ -13,3 +20,9 @@ Style/StringLiteralsInInterpolation:
 Layout/LineLength:
   Enabled: true
   Max: 120
+
+Lint/ConstantResolution:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
