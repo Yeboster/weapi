@@ -32,7 +32,7 @@ module WeApi
       weather_for(city, Date.today.next_day.to_s)
     end
 
-    def raining_tomorrow_at?(city)
+    def raining_tomorrow_in?(city)
       weather = weather_tomorrow_for city
       weather['weather_state_name']&.downcase&.include? 'rain'
     end

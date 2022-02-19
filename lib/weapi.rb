@@ -11,10 +11,10 @@ class WeApiCLI < Thor
     @api = WeApi::Api.new
   end
 
-  desc 'raining-tomorrow-at CITY', 'Check if tomorrow is raining at CITY'
-  def raining_tomorrow_at(city)
-    answer = @api.raining_tomorrow_at?(city) ? 'Yes' : 'No'
-    puts "#{answer}, it's #{answer == 'No' ? 'not ' : ''}raining tomorrow at #{city}"
+  desc 'raining-tomorrow-in CITY', 'Check if tomorrow is raining in CITY'
+  def raining_tomorrow_in(city)
+    answer = @api.raining_tomorrow_in?(city) ? 'Yes' : 'No'
+    puts "#{answer}, it's #{answer == 'No' ? 'not ' : ''}raining tomorrow in #{city}"
   rescue WeApi::NoLocationFound
     puts "City '#{city}' not found"
   end
@@ -36,8 +36,8 @@ class WeApiCLI < Thor
     puts "City '#{city}' not found"
   end
 
-  desc 'weather-tomorrow-at CITY', 'Get tomorrow\'s weather for a CITY'
-  def weather_tomorrow_at(city)
+  desc 'weather-tomorrow-in CITY', 'Get tomorrow\'s weather for a CITY'
+  def weather_tomorrow_in(city)
     if (weather = @api.weather_tomorrow_for(city))
       show_weather weather, city
     else

@@ -28,11 +28,11 @@ class ApiRealTest < Test::Unit::TestCase
     assert_equal(Date.today.next_day.to_s, weather["applicable_date"])
   end
 
-  def test_raining_tomorrow_at_london
+  def test_raining_tomorrow_in_london
     weather = @api.weather_tomorrow_for("london")
     expected_raining = weather["weather_state_name"].downcase.include?("rain")
 
-    is_raining = @api.raining_tomorrow_at?("london")
+    is_raining = @api.raining_tomorrow_in?("london")
     assert_equal(expected_raining, is_raining)
   end
 
