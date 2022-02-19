@@ -2,6 +2,8 @@ require 'date'
 
 # Api client
 class WeApi
+  class NoLocationFound < StandardError; end
+
   def initialize(client)
     @client = client
   end
@@ -13,9 +15,10 @@ class WeApi
 
   def weather_for(city, date)
     location = location_for city
-    return unless location
+    raise NoLocationFound unless location
 
-    date = Date.parse(date).strftime('%Y/%m/%d')
+    date = Date.parse(date) if date.is_a? String
+    date = date.strftime('%Y/%m/%d')
 
     weather = @client.call "location/#{location}/#{date}/"
     weather&.first
@@ -23,5 +26,10 @@ class WeApi
 
   def weather_tomorrow_for(city)
     weather_for(city, Date.today.next_day.to_s)
+  end
+
+  def raining_tomorrow_at?(city)
+    weather = weather_tomorrow_for city
+    weather['weather_state_name']&.downcase&.include? 'rain'
   end
 end
