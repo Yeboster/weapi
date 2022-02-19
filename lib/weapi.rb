@@ -1,5 +1,5 @@
-require_relative 'client'
-require_relative 'api'
+require_relative 'weapi/client'
+require_relative 'weapi/api'
 
 require 'date'
 require 'thor'
@@ -8,8 +8,7 @@ require 'thor'
 class WeApiCLI < Thor
   def initialize(*args)
     super(*args)
-    client = ApiClient.new
-    @api = WeApi.new client
+    @api = WeApi::Api.new
   end
 
   desc 'raining-tomorrow-at CITY', 'Check if tomorrow is raining at CITY'

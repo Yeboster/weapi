@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../src/cli'
+require 'weapi'
 
 WeApiCLI.start(ARGV)
