@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'weapi/client'
 require_relative 'weapi/api'
 
@@ -14,9 +16,9 @@ class WeApiCLI < Thor
   desc 'raining-tomorrow-in CITY', 'Check if tomorrow is raining in CITY'
   def raining_tomorrow_in(city)
     answer = @api.raining_tomorrow_in?(city) ? 'Yes' : 'No'
-    puts "#{answer}, it's #{answer == 'No' ? 'not ' : ''}raining tomorrow in #{city}"
+    puts("#{answer}, it's #{answer == 'No' ? 'not ' : ''}raining tomorrow in #{city}")
   rescue WeApi::NoLocationFound
-    puts "City '#{city}' not found"
+    puts("City '#{city}' not found")
   end
 
   desc 'weather-on DATE CITY', 'Get weather for a CITY on given DATE'
@@ -28,35 +30,35 @@ class WeApiCLI < Thor
     end
 
     if (weather = @api.weather_for(city, date))
-      show_weather weather, city
+      show_weather(weather, city)
     else
-      puts "No weather for #{city} on #{date}"
+      puts("No weather for #{city} on #{date}")
     end
   rescue WeApi::NoLocationFound
-    puts "City '#{city}' not found"
+    puts("City '#{city}' not found")
   end
 
-  desc 'weather-tomorrow-in CITY', 'Get tomorrow\'s weather for a CITY'
+  desc 'weather-tomorrow-in CITY', "Get tomorrow's weather for a CITY"
   def weather_tomorrow_in(city)
     if (weather = @api.weather_tomorrow_for(city))
-      show_weather weather, city
+      show_weather(weather, city)
     else
-      puts "No weather for #{city} tomorrow"
+      puts("No weather for #{city} tomorrow")
     end
   rescue WeApi::NoLocationFound
-    puts "City '#{city}' not found"
+    puts("City '#{city}' not found")
   end
 
   private
 
   def show_weather(weather, city)
-    puts 'No weather found' unless weather
+    puts('No weather found') unless weather
 
-    puts "Weather for #{city} on #{weather['applicable_date']}"
-    puts '----------------------------'
-    puts "Weather: #{weather['weather_state_name']}"
-    puts "Wind direction: #{weather['wind_direction_compass']}"
-    puts "Wind speed: #{weather['wind_speed'].round(2)}"
-    puts "Prediction accuracy: #{weather['predictability']}%"
+    puts("Weather for #{city} on #{weather['applicable_date']}")
+    puts('----------------------------')
+    puts("Weather: #{weather['weather_state_name']}")
+    puts("Wind direction: #{weather['wind_direction_compass']}")
+    puts("Wind speed: #{weather['wind_speed'].round(2)}")
+    puts("Prediction accuracy: #{weather['predictability']}%")
   end
 end

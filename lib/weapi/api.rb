@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 
 require_relative 'client'
@@ -12,18 +14,18 @@ module WeApi
     end
 
     def location_for(city)
-      locations = @client.call '/location/search/', query: ["query=#{city}"]
+      locations = @client.call('/location/search/', query: ["query=#{city}"])
       locations&.first&.[]('woeid')
     end
 
     def weather_for(city, date)
-      location = location_for city
-      raise NoLocationFound unless location
+      location = location_for(city)
+      raise(NoLocationFound) unless location
 
-      date = Date.parse(date) if date.is_a? String
+      date = Date.parse(date) if date.is_a?(String)
       date = date.strftime('%Y/%m/%d')
 
-      weather = @client.call "location/#{location}/#{date}/"
+      weather = @client.call("location/#{location}/#{date}/")
       # TODO: Extract multiple weather data
       weather&.first
     end
@@ -33,8 +35,8 @@ module WeApi
     end
 
     def raining_tomorrow_in?(city)
-      weather = weather_tomorrow_for city
-      weather['weather_state_name']&.downcase&.include? 'rain'
+      weather = weather_tomorrow_for(city)
+      weather['weather_state_name']&.downcase&.include?('rain')
     end
   end
 end
