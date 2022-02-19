@@ -6,6 +6,8 @@ require_relative 'weapi/api'
 require 'date'
 require 'thor'
 
+# TODO: Add tests for the CLI
+
 # A console line interface to gather weather data using MetaWeather API
 class WeApiCLI < Thor
   def initialize(*args)

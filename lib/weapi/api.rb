@@ -10,6 +10,7 @@ module WeApi
   # Api to gather weather data
   class Api
     def initialize(client = nil)
+      # TODO: Mock client and test API
       @client = client || ::WeApi::ApiClient.new
     end
 
