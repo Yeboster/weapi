@@ -26,7 +26,7 @@ class WeApiCLI < Thor
     begin
       date = Date.parse(date)
     rescue Date::Error
-      return 'Invalid date'
+      puts('Invalid date')
     end
 
     if (weather = @api.weather_for(city, date))
